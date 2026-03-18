@@ -227,9 +227,9 @@ function WorkPanel({ visible }: { visible: boolean }) {
         Projects<br />that think.
       </h2>
       {[
-        { n: '01', name: 'AGENT ZERO', desc: 'Autonomous multi-step agentic workflow for complex AI tasks', stack: 'Python · LLM Orchestration · Prompt Chaining' },
-        { n: '02', name: 'PROMPTLAB', desc: 'Prompt versioning system with eval scoring and iteration tracking', stack: 'Python · SQL · Structured Outputs' },
-        { n: '03', name: 'NEURALSCRIPT', desc: 'Low-latency inference interface with custom instruction design', stack: 'C · Python · Agentic Pipeline Design' },
+        { n: '01', name: 'PROJECT ONE', desc: 'Coming soon — details will be added here shortly.', stack: 'Stack · TBD' },
+        { n: '02', name: 'PROJECT TWO', desc: 'Coming soon — details will be added here shortly.', stack: 'Stack · TBD' },
+        { n: '03', name: 'PROJECT THREE', desc: 'Coming soon — details will be added here shortly.', stack: 'Stack · TBD' },
       ].map((p, i) => (
         <div key={p.n} style={{ paddingTop: i === 0 ? '0' : '16px', paddingBottom: '16px', borderBottom: '1px solid #1E1E2E' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
