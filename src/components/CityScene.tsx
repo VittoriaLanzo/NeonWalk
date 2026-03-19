@@ -456,26 +456,70 @@ function Building({ data, brickMap }: { data: BuildingData; brickMap: THREE.Text
   );
 }
 
-/* ─── Street Lamp ─── */
+/* ─── Final Refined Victorian Street Lamp ─── */
 function StreetLamp({ position, side }: { position: [number, number, number]; side: number }) {
+  const lampColor = "#050505";
+  const lightColor = "#ffbb55";
+  const lanternX = side * -1.2;
+
   return (
     <group position={position}>
+      {/* 1. THE MAIN POST */}
       <mesh position={[0, 3.5, 0]}>
-        <cylinderGeometry args={[0.06, 0.06, 7, 6]} />
-        <meshStandardMaterial color="#222222" metalness={0.9} roughness={0.3} />
+        <cylinderGeometry args={[0.08, 0.12, 7, 8]} />
+        <meshStandardMaterial color={lampColor} metalness={0.9} roughness={0.1} />
       </mesh>
-      <mesh position={[side * -0.75, 6.8, 0]}>
-        <boxGeometry args={[1.5, 0.08, 0.08]} />
-        <meshStandardMaterial color="#222222" metalness={0.9} roughness={0.3} />
+
+      {/* 2. THE ARM (Hanging Logic Fixed) */}
+      <mesh position={[side * -0.6, 7, 0]}>
+        <boxGeometry args={[1.2, 0.08, 0.08]} />
+        <meshStandardMaterial color={lampColor} />
       </mesh>
-      <mesh position={[side * -1.5, 6.8, 0]}>
-        <sphereGeometry args={[0.2, 8, 8]} />
-        <meshStandardMaterial color="#000" emissive={MATRIX_GREEN} emissiveIntensity={6} />
-      </mesh>
-      <pointLight position={[side * -1.5, 6.5, 0]} color={MATRIX_GREEN} intensity={5} distance={18} decay={2} />
-      <mesh position={[side * -1.5, 0.02, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <circleGeometry args={[2, 16]} />
-        <meshBasicMaterial color={MATRIX_GREEN} transparent opacity={0.08} depthWrite={false} />
+
+      {/* 3. THE LANTERN UNIT */}
+      <group position={[lanternX, 6.4, 0]}>
+        {/* THE GLASS: Now using Standard Material for realistic building-like shading */}
+        <mesh position={[0, 0, 0]}>
+          <cylinderGeometry args={[0.3, 0.15, 0.8, 4]} />
+          <meshStandardMaterial
+            color={lightColor}
+            emissive={lightColor}
+            emissiveIntensity={4} // Lower than before to let the shading show
+            roughness={0.1}
+            metalness={0}
+          />
+        </mesh>
+
+        {/* THE METAL CORNER RIBS: Placed accurately to prevent "shredding" */}
+        {[0, 1, 2, 3].map((i) => (
+          <group key={i} rotation={[0, (i * Math.PI) / 2 + Math.PI / 4, 0]}>
+            <mesh position={[0.22, 0, 0]}>
+              <boxGeometry args={[0.05, 0.82, 0.05]} />
+              <meshStandardMaterial color={lampColor} />
+            </mesh>
+          </group>
+        ))}
+
+        {/* THE TOP CAP (The "Hat") */}
+        <mesh position={[0, 0.45, 0]}>
+          <coneGeometry args={[0.4, 0.25, 4]} />
+          <meshStandardMaterial color={lampColor} />
+        </mesh>
+
+        {/* THE BOTTOM BASE (The "Socket") */}
+        <mesh position={[0, -0.42, 0]}>
+          <boxGeometry args={[0.2, 0.08, 0.2]} />
+          <meshStandardMaterial color={lampColor} />
+        </mesh>
+
+        {/* 4. LIGHTING: One PointLight for the glow, one SpotLight for the wall shading */}
+        <pointLight intensity={80} distance={15} color={lightColor} decay={2} />
+      </group>
+
+      {/* 5. GROUND LIGHT GRADIENT */}
+      <mesh position={[lanternX, 0.02, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <circleGeometry args={[4, 32]} />
+        <meshBasicMaterial color={lightColor} transparent opacity={0.1} depthWrite={false} />
       </mesh>
     </group>
   );
