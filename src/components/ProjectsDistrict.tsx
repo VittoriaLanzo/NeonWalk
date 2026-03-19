@@ -10,15 +10,16 @@ interface Project {
 const projects: Project[] = [
   {
     number: '01',
-    name: 'AGENT ZERO',
-    description: 'Autonomous multi-step agentic workflow for complex AI tasks',
-    stack: 'Python · LLM Orchestration · Prompt Chaining',
+    name: 'Sestara',
+    description: "Most learners quit because they don't know what to study next. Sestara fixes that — AI generates your personal roadmap, tracks every topic, and quizzes you until you actually know it."
+    stack: 'Python · LLM Orchestration · Prompt engineering · frontend',
   },
   {
-    number: '02',
-    name: 'PROMPTLAB',
-    description: 'Prompt versioning system with eval scoring and iteration tracking',
-    stack: 'Python · SQL · Structured Outputs',
+   number: '02',
+name: 'Extended Abstract: Windowed Minority Guidance',
+description: 'Preliminary evidence for timestep-localized effects in diffusion denoising.',
+stack: 'Python · SQL · Kaggle · Agentic AI system',
+note: 'Engineered via a self-iterating agentic AI system orchestrating multiple specialized agents to autonomously design experiments, execute large-scale runs, and iteratively refine hypotheses through closed-loop analysis.'
   },
   {
     number: '03',
