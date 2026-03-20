@@ -989,11 +989,6 @@ function EndOfStreetBuilding({ brickMap }: { brickMap: THREE.Texture }) {
           <div style={{ width: '120px', height: '1px', background: 'linear-gradient(90deg, transparent, #6E6EFF, transparent)' }} />
           <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '13px', color: '#8888AA', letterSpacing: '0.15em', textAlign: 'center' }}>AI PROMPT ENGINEER</div>
           <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '11px', color: '#44445A', letterSpacing: '0.1em', textAlign: 'center' }}>AGENTIC SYSTEMS DESIGNER</div>
-          <div style={{ display: 'flex', gap: '16px', marginTop: '6px' }}>
-            {['◈', '⬡', '◎'].map((icon, i) => (
-              <div key={i} style={{ fontFamily: 'Syne, sans-serif', fontSize: '16px', color: '#6E6EFF', opacity: 0.6 }}>{icon}</div>
-            ))}
-          </div>
         </div>
       </Html>
       {/* Neon front strip */}
@@ -1054,17 +1049,6 @@ function EndOfStreetBuilding({ brickMap }: { brickMap: THREE.Texture }) {
         <planeGeometry args={[10, 5]} />
         <meshStandardMaterial color="#0A0A14" emissive={ACCENT_VIOLET} emissiveIntensity={0.6} />
       </mesh>
-      {/* Html wrapped in rotated group so it lies flat on the roof facing upward */}
-      <group position={[0, 30.78, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <Html transform occlude={false} distanceFactor={30} style={{ pointerEvents: 'none' }}>
-          <div style={{ width: '200px', height: '100px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
-            <div style={{ fontFamily: 'Syne, sans-serif', fontSize: '32px', fontWeight: 700, color: '#6E6EFF', textShadow: '0 0 20px #6E6EFF' }}>VL</div>
-            <div style={{ width: '1px', height: '40px', background: '#6E6EFF44' }} />
-            <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '9px', color: '#6E6EFF88', letterSpacing: '0.2em', textTransform: 'uppercase', lineHeight: 1.6 }}>VITTORIA<br/>LANZO</div>
-          </div>
-        </Html>
-      </group>
-
       {/* Water tower cluster (left) */}
       <group position={[-10, 30.7, -1.5]}>
         {[[-0.5,0,-0.5],[0.5,0,-0.5],[-0.5,0,0.5],[0.5,0,0.5]].map(([lx,,lz], li) => (
