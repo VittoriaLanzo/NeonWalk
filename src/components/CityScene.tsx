@@ -642,10 +642,12 @@ interface SocialDroneProps {
   platform: string;
   label: string;
   link: string;
+  /** If provided, called on click instead of opening `link` */
+  onActivate?: () => void;
   IconComponent: React.FC;
 }
 
-function SocialDrone({ center, color, orbitRadiusX, orbitRadiusZ, speed, platform, label, link, IconComponent }: SocialDroneProps) {
+function SocialDrone({ center, color, orbitRadiusX, orbitRadiusZ, speed, platform, label, link, onActivate, IconComponent }: SocialDroneProps) {
   const groupRef = useRef<THREE.Group>(null);
   const bodyRef = useRef<THREE.Group>(null);
   const rotorRefs = useRef<THREE.Mesh[]>([]);
@@ -667,8 +669,8 @@ function SocialDrone({ center, color, orbitRadiusX, orbitRadiusZ, speed, platfor
   }, []);
   const handleClick = useCallback((e: ThreeEvent<MouseEvent>) => {
     e.stopPropagation();
-    window.open(link, '_blank', 'noopener,noreferrer');
-  }, [link]);
+    if (onActivate) { onActivate(); } else { window.open(link, '_blank', 'noopener,noreferrer'); }
+  }, [link, onActivate]);
 
   useFrame(({ clock }) => {
     if (!groupRef.current) return;
@@ -890,7 +892,7 @@ function SocialDrone({ center, color, orbitRadiusX, orbitRadiusZ, speed, platfor
           }}>{label}</div>
           {hovered && (
             <button
-              onPointerDown={(e) => { e.stopPropagation(); window.open(link, '_blank', 'noopener,noreferrer'); }}
+              onPointerDown={(e) => { e.stopPropagation(); if (onActivate) { onActivate(); } else { window.open(link, '_blank', 'noopener,noreferrer'); } }}
               onMouseEnter={(e) => { (e.target as HTMLElement).style.background = color; (e.target as HTMLElement).style.color = '#050510'; }}
               onMouseLeave={(e) => { (e.target as HTMLElement).style.background = 'transparent'; (e.target as HTMLElement).style.color = color; }}
               style={{
@@ -987,11 +989,6 @@ function EndOfStreetBuilding({ brickMap }: { brickMap: THREE.Texture }) {
           <div style={{ width: '120px', height: '1px', background: 'linear-gradient(90deg, transparent, #6E6EFF, transparent)' }} />
           <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '13px', color: '#8888AA', letterSpacing: '0.15em', textAlign: 'center' }}>AI PROMPT ENGINEER</div>
           <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '11px', color: '#44445A', letterSpacing: '0.1em', textAlign: 'center' }}>AGENTIC SYSTEMS DESIGNER</div>
-          <div style={{ display: 'flex', gap: '16px', marginTop: '6px' }}>
-            {['◈', '⬡', '◎'].map((icon, i) => (
-              <div key={i} style={{ fontFamily: 'Syne, sans-serif', fontSize: '16px', color: '#6E6EFF', opacity: 0.6 }}>{icon}</div>
-            ))}
-          </div>
         </div>
       </Html>
       {/* Neon front strip */}
@@ -1052,17 +1049,6 @@ function EndOfStreetBuilding({ brickMap }: { brickMap: THREE.Texture }) {
         <planeGeometry args={[10, 5]} />
         <meshStandardMaterial color="#0A0A14" emissive={ACCENT_VIOLET} emissiveIntensity={0.6} />
       </mesh>
-      {/* Html wrapped in rotated group so it lies flat on the roof facing upward */}
-      <group position={[0, 30.78, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <Html transform occlude={false} distanceFactor={30} style={{ pointerEvents: 'none' }}>
-          <div style={{ width: '200px', height: '100px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
-            <div style={{ fontFamily: 'Syne, sans-serif', fontSize: '32px', fontWeight: 700, color: '#6E6EFF', textShadow: '0 0 20px #6E6EFF' }}>VL</div>
-            <div style={{ width: '1px', height: '40px', background: '#6E6EFF44' }} />
-            <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '9px', color: '#6E6EFF88', letterSpacing: '0.2em', textTransform: 'uppercase', lineHeight: 1.6 }}>VITTORIA<br/>LANZO</div>
-          </div>
-        </Html>
-      </group>
-
       {/* Water tower cluster (left) */}
       <group position={[-10, 30.7, -1.5]}>
         {[[-0.5,0,-0.5],[0.5,0,-0.5],[-0.5,0,0.5],[0.5,0,0.5]].map(([lx,,lz], li) => (
@@ -1448,14 +1434,25 @@ function StreetProps({ isMobile }: { isMobile: boolean }) {
       trashSide *= -1;
     }
 
+    // Navigation stall positions — keep a clear zone (±20 z, same side) around each
+    const STALL_CLEAR: { z: number; side: number }[] = [
+      { z: -20, side: -1 }, { z: -55, side: 1 },
+      { z: -90, side: -1 }, { z: -125, side: 1 }, { z: -160, side: -1 },
+    ];
+    const nearStall = (cz: number, cside: number) =>
+      STALL_CLEAR.some(s => cside === s.side && Math.abs(cz - s.z) < 20);
+
     const cars: { pos: [number, number, number]; color: string; rotY: number; lightsOn: boolean }[] = [];
     const carColors = ['#1A3A1A', '#1A1A38', '#381A1A', '#2A2A2A'];
     const usedZ = new Set<number>();
-    for (let i = 0; i < 10; i++) {
+    let attempts = 0;
+    while (cars.length < 10 && attempts < 200) {
+      attempts++;
       let cz = 25 - Math.floor(Math.random() * 215);
       while (usedZ.has(cz)) cz -= 3;
-      usedZ.add(cz);
       const cside = Math.random() > 0.5 ? 1 : -1;
+      if (nearStall(cz, cside)) continue;
+      usedZ.add(cz);
       cars.push({
         pos: [cside * 7.5, 0, cz],
         color: carColors[Math.floor(Math.random() * carColors.length)],
@@ -1911,7 +1908,9 @@ function CityEnvironment({ onStallClick }: { onStallClick: (id: string) => void 
       <SocialDrone center={[0, 8, -70]} color="#FF2D78" orbitRadiusX={4} orbitRadiusZ={7} speed={0.22}
         platform="Instagram" label="FOLLOW" link="https://instagram.com/VittoriaLanzo" IconComponent={InstagramSVG} />
       <SocialDrone center={[0, 8, -100]} color={NEON_CYAN} orbitRadiusX={5} orbitRadiusZ={8} speed={0.15}
-        platform="Email" label="TRANSMIT" link={(() => { const u='lanzo'+'.vittoria'; const d='gmail'+'.com'; return 'mailto:'+u+'@'+d; })()} IconComponent={EmailSVG} />
+        platform="Email" label="CONTACT" link=""
+        onActivate={() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' })}
+        IconComponent={EmailSVG} />
 
       <EndOfStreetBuilding brickMap={brickMap} />
 
@@ -1926,9 +1925,9 @@ function CityEnvironment({ onStallClick }: { onStallClick: (id: string) => void 
       {!isMobile && <OverheadCables />}
       {!isMobile && <BackgroundBuildings />}
 
-      <RainParticles count={isMobile ? 80 : 400} />
-      <FloatingDust />
-      <Stars radius={200} depth={60} count={1500} factor={4} saturation={0} />
+      <RainParticles count={isMobile ? 40 : 300} />
+      {!isMobile && <FloatingDust />}
+      <Stars radius={200} depth={60} count={isMobile ? 400 : 1200} factor={4} saturation={0} />
       <CityGlowDome />
 
       {/* Neon Shop Signs on road-facing walls */}
@@ -2040,9 +2039,10 @@ export default function CityScene({ scrollProgress, onStallClick }: { scrollProg
     <div className="fixed inset-0 z-0">
       <Suspense fallback={<LoadingScreen />}>
         <Canvas
-          camera={{ fov: 65, near: 0.1, far: 600, position: [0, 3, 30] }}
+          camera={{ fov: 65, near: 0.1, far: 400, position: [0, 3, 30] }}
           gl={{ antialias: false, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.2, alpha: false, powerPreference: 'high-performance' }}
           dpr={[1, 1]}
+          performance={{ min: 0.5 }}
         >
           <MatrixFog />
           <CameraController scrollProgress={scrollProgress} />
