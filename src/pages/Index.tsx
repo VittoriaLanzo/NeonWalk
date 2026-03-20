@@ -80,10 +80,16 @@ export default function Index() {
         <HeroDistrict />
       </div>
 
-      {/* ─── Glass Panels (bottom-anchored, don't cover 3D city center) ─── */}
-      <AboutPanel visible={sp >= 0.15 && sp < 0.34} />
-      <SkillsPanel visible={sp >= 0.35 && sp < 0.51} />
-      <WorkPanel visible={sp >= 0.52 && sp < 0.69} />
+      {/* ─── Glass Panels ───────────────────────────────────────────────────
+           Timing derived from camera path z(t)=30-231.25t vs stall positions.
+           Windows use stall midpoints as boundaries → only ONE panel visible.
+           About   stall z=-20  →  panel: 0.09–0.29
+           Skills  stall z=-55  →  panel: 0.29–0.44
+           Work    stall z=-90  →  panel: 0.44–0.59
+      ─────────────────────────────────────────────────────────────────── */}
+      <AboutPanel visible={sp >= 0.09 && sp < 0.29} />
+      <SkillsPanel visible={sp >= 0.29 && sp < 0.44} />
+      <WorkPanel visible={sp >= 0.44 && sp < 0.59} />
 
       {/* ─── Nav Dots ─── */}
       <NavDots sp={sp} onNavigate={scrollToProgress} />
@@ -104,16 +110,17 @@ export default function Index() {
       </div>
 
       {/* ─── Scroll UX Indicators ─── */}
-      {/* Entry invite: shown at very start before hero fades */}
-      <EntryScrollInvite visible={sp < 0.08} />
+      {/* Entry invite at page load */}
+      <EntryScrollInvite visible={sp < 0.07} />
 
-      {/* Section advance hints — tell user what's coming next */}
-      <SectionAdvanceHint visible={sp >= 0.08 && sp < 0.14} label="About" color="#6E6EFF" />
-      <SectionAdvanceHint visible={sp >= 0.30 && sp < 0.35} label="Expertise" color="#00FF88" />
-      <SectionAdvanceHint visible={sp >= 0.47 && sp < 0.52} label="Work" color="#00D4FF" />
-      <SectionAdvanceHint visible={sp >= 0.65 && sp < 0.70} label="Lab" color="#FF2D78" />
+      {/* "Coming up" hint just before About panel appears */}
+      <SectionAdvanceHint visible={sp >= 0.07 && sp < 0.09} label="About" color="#6E6EFF" />
 
-      <ScrollHint visible={sp > 0.75 && sp < 0.92} />
+      {/* After all content panels are done, guide toward Lab & Contact stalls */}
+      <SectionAdvanceHint visible={sp >= 0.60 && sp < 0.68} label="Lab" color="#FF2D78" />
+      <SectionAdvanceHint visible={sp >= 0.75 && sp < 0.82} label="Contact" color="#6E6EFF" />
+
+      <ScrollHint visible={sp >= 0.82 && sp < 0.93} />
       <BillboardFormOverlay visible={sp > 0.92} />
       <StallMenuOverlay activeStall={activeStall} onClose={() => setActiveStall(null)} />
     </div>
@@ -127,14 +134,19 @@ export default function Index() {
 interface GlassPanelProps {
   visible: boolean;
   side: 'left' | 'right';
+  /** Which side the 3D stall is on — opposite to side. Used for arrow direction. */
+  stallSide: 'left' | 'right';
   children: React.ReactNode;
 }
 
-function GlassPanel({ visible, side, children }: GlassPanelProps) {
+function GlassPanel({ visible, side, stallSide, children }: GlassPanelProps) {
+  // Arrow points toward the 3D stall (which is on the opposite side of the screen)
+  const arrowDir = stallSide === 'left' ? '←' : '→';
+
   return (
     <div style={{
       position: 'fixed',
-      // Anchor to bottom so 3D city center remains unobstructed
+      // Bottom-anchored: keeps upper 3D city view unobstructed
       bottom: '24px',
       left: side === 'left' ? '24px' : 'auto',
       right: side === 'right' ? '24px' : 'auto',
@@ -147,18 +159,44 @@ function GlassPanel({ visible, side, children }: GlassPanelProps) {
       zIndex: 50,
       width: '340px',
       maxWidth: '38vw',
-      maxHeight: '52vh',
+      maxHeight: '54vh',
       overflowY: 'auto',
-      background: 'rgba(5, 5, 18, 0.82)',
+      background: 'rgba(5, 5, 18, 0.84)',
       backdropFilter: 'blur(20px)',
       WebkitBackdropFilter: 'blur(20px)',
       border: '1px solid rgba(110, 110, 255, 0.18)',
       borderRadius: '8px',
       boxShadow: '0 0 0 1px rgba(255,255,255,0.03), 0 -4px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05)',
-      backgroundImage: 'linear-gradient(rgba(5,5,18,0.82), rgba(5,5,18,0.82)), repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.015) 2px, rgba(0,0,0,0.015) 4px)',
+      backgroundImage: 'linear-gradient(rgba(5,5,18,0.84), rgba(5,5,18,0.84)), repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.015) 2px, rgba(0,0,0,0.015) 4px)',
     }}>
       <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, #6E6EFF55, transparent)' }} />
       <div style={{ padding: '20px 24px' }}>{children}</div>
+      {/* Stall locator arrow — points toward the physical panel in the 3D scene */}
+      <div style={{
+        position: 'absolute',
+        top: '50%', transform: 'translateY(-50%)',
+        [stallSide === 'left' ? 'left' : 'right']: '-36px',
+        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px',
+        pointerEvents: 'none',
+      }}>
+        <div style={{
+          fontFamily: "'Syne', sans-serif", fontSize: '18px',
+          color: '#6E6EFF', opacity: 0.7,
+          animation: `stallArrowPulse${stallSide} 1.6s ease-in-out infinite`,
+        }}>{arrowDir}</div>
+        <div style={{
+          fontFamily: "'Inter', sans-serif", fontSize: '7px',
+          color: '#44445A', letterSpacing: '0.1em', textTransform: 'uppercase',
+          writingMode: 'vertical-lr',
+          transform: stallSide === 'left' ? 'rotate(180deg)' : 'none',
+        }}>panel</div>
+      </div>
+      <style>{`
+        @keyframes stallArrowPulse${stallSide} {
+          0%, 100% { opacity: 0.4; transform: translateY(-50%) translateX(0); }
+          50% { opacity: 1; transform: translateY(-50%) translateX(${stallSide === 'left' ? '-4px' : '4px'}); }
+        }
+      `}</style>
     </div>
   );
 }
@@ -174,9 +212,10 @@ function SectionLabel({ label }: { label: string }) {
 }
 
 /* ─── About Panel ─── */
+// About stall is on the LEFT side of the road → panel appears on the RIGHT
 function AboutPanel({ visible }: { visible: boolean }) {
   return (
-    <GlassPanel visible={visible} side="left">
+    <GlassPanel visible={visible} side="right" stallSide="left">
       <SectionLabel label="About" />
       <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: '26px', fontWeight: 700, color: '#F0F0F5', lineHeight: 1.2, marginBottom: '16px' }}>
         I make AI<br />think precisely.
@@ -202,9 +241,10 @@ function AboutPanel({ visible }: { visible: boolean }) {
 }
 
 /* ─── Skills Panel ─── */
+// Expertise stall is on the RIGHT side of the road → panel appears on the LEFT
 function SkillsPanel({ visible }: { visible: boolean }) {
   return (
-    <GlassPanel visible={visible} side="right">
+    <GlassPanel visible={visible} side="left" stallSide="right">
       <SectionLabel label="Expertise" />
       <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: '26px', fontWeight: 700, color: '#F0F0F5', lineHeight: 1.2, marginBottom: '20px' }}>
         The tools<br />are language.
@@ -230,9 +270,10 @@ function SkillsPanel({ visible }: { visible: boolean }) {
 }
 
 /* ─── Work Panel ─── */
+// Work stall is on the LEFT side of the road → panel appears on the RIGHT
 function WorkPanel({ visible }: { visible: boolean }) {
   return (
-    <GlassPanel visible={visible} side="left">
+    <GlassPanel visible={visible} side="right" stallSide="left">
       <SectionLabel label="Selected Work" />
       <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: '26px', fontWeight: 700, color: '#F0F0F5', lineHeight: 1.2, marginBottom: '20px' }}>
         Projects<br />that think.
@@ -261,8 +302,8 @@ function WorkPanel({ visible }: { visible: boolean }) {
 /* ─── Nav Dots ─── */
 function NavDots({ sp, onNavigate }: { sp: number; onNavigate: (t: number) => void }) {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
-  // Hide when Skills panel is on the right side
-  const hidden = sp >= 0.35 && sp < 0.51;
+  // Nav dots are on the right; all panels now bottom-anchored so no conflict
+  const hidden = false;
 
   return (
     <div style={{
