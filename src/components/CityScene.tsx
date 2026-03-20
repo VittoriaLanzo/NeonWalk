@@ -1,6 +1,6 @@
 import { useRef, useMemo, useEffect, useState, useCallback, Suspense } from 'react';
 import { Canvas, useFrame, useThree, ThreeEvent } from '@react-three/fiber';
-import { Stars, Text } from '@react-three/drei';
+import { Stars, Text, Html } from '@react-three/drei';
 import * as THREE from 'three';
 
 
