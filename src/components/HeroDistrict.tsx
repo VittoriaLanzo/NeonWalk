@@ -61,14 +61,14 @@ export default function HeroDistrict() {
         viewBox="0 0 1440 900"
         preserveAspectRatio="xMidYMid slice"
       >
-        {/* Arc 1 — large cyan, upper-left, ~1/4 arc (r=210, circ≈1319) */}
+        {/* Arc 1 — large, upper-left, ~1/4 arc (r=210, circ≈1319) */}
         <circle cx="140" cy="170" r="210" stroke="#00D4FF" strokeWidth="1.2" fill="none"
           strokeDasharray="330 989" strokeDashoffset="-60" opacity="0.22" />
-        {/* Arc 2 — medium violet, right-center, ~1/3 arc (r=130, circ≈817) */}
-        <circle cx="1360" cy="540" r="130" stroke="#6E6EFF" strokeWidth="1.5" fill="none"
-          strokeDasharray="272 545" strokeDashoffset="50" opacity="0.28" />
-        {/* Arc 3 — small white, lower-left, ~1/3 arc (r=78, circ≈490) */}
-        <circle cx="280" cy="860" r="78" stroke="#F0F0F5" strokeWidth="0.8" fill="none"
+        {/* Arc 2 — medium, right-center, ~1/3 arc (r=130, circ≈817) */}
+        <circle cx="1360" cy="540" r="130" stroke="#00D4FF" strokeWidth="1.5" fill="none"
+          strokeDasharray="272 545" strokeDashoffset="50" opacity="0.20" />
+        {/* Arc 3 — small, lower-left, ~1/3 arc (r=78, circ≈490) */}
+        <circle cx="280" cy="860" r="78" stroke="#00D4FF" strokeWidth="0.8" fill="none"
           strokeDasharray="163 327" strokeDashoffset="-25" opacity="0.14" />
       </svg>
       <div className="text-center max-w-4xl">
