@@ -164,23 +164,27 @@ The provider-agnostic architecture of the Custom Quiz Studio is a principled sys
       name: 'Extended Abstract: Windowed Minority Guidance',
       year: '2025',
       desc: 'Preliminary evidence for timestep-localized effects in diffusion denoising.',
-      longDesc: `Minority guidance (Um et al., 2024) steers diffusion sampling toward under-represented data regions by injecting a classifier gradient at every denoising timestep. The central question here is whether that effect is actually uniform — or whether it is timestep-localized, concentrated in a specific phase of the denoising trajectory.
+      longDesc: `Minority guidance (Um et al., 2024) steers diffusion sampling toward under-represented data regions by injecting a classifier gradient at every denoising timestep. The premise of this work is a simple question: is that effect actually uniform across the denoising trajectory, or is it concentrated in a specific phase?
 
 ## The Research Question
 
-Full-chain guidance applies the minority signal across all 1000 timesteps. But denoising is not a uniform process: early steps establish global structure, mid steps resolve form and composition, late steps sharpen fine detail. If the signal is effective only during one of these phases, applying it everywhere is wasteful — and potentially counterproductive. This extended abstract tests that directly.
+If minority guidance derives most of its effect from a narrow window of timesteps, applying it at every step wastes compute — and may introduce noise outside the effective window. Prior work on the denoising process suggests that different phases of sampling contribute differently to output structure, but whether this asymmetry extends to guidance effectiveness is not established. This extended abstract reports a preliminary investigation of that question under controlled, limited conditions.
 
 ## Experimental Design
 
-Three equal-thirds windows partition the denoising trajectory: early (t ∈ [0,333)), mid (t ∈ [333,667)), and late (t ∈ [667,1000)). Each is tested against a full-chain minority guidance baseline and a no-guidance baseline, using the LSUN Bedroom 256×256 model with the frozen minority classifier chain from Um et al. (2024). The design runs 50 seeds × 5 conditions = 250 total experiments. Primary metric: classifier cross-entropy loss at the minority class (lower = stronger guidance signal).
+The denoising trajectory is partitioned into three equal-thirds windows — early (t ∈ [0,333)), mid (t ∈ [333,667)), and late (t ∈ [667,1000)) — defined over the original DDPM noise schedule index space, with \`timestep_respacing=250\` mapping each window to a subset of the 250 executed steps. Each windowed condition is compared against a full-chain minority guidance baseline and a no-guidance baseline. Experiments use the LSUN Bedroom 256×256 model with the frozen minority classifier chain from Um et al. (2024), at a fixed guidance scale of 1.0, with a single target class (class 99) and n=1 sample per seed.
 
-## The Agentic Pipeline
+The study ran 50 seeds × 5 conditions = 250 total runs. Primary metric is classifier cross-entropy loss at the minority class, where lower values indicate stronger guidance signal. Two methodological deviations are noted explicitly in the paper: the sample size was pre-registered at n=10 and expanded to n=50 during execution, and the primary metric was switched from classifier confidence to cross-entropy loss — both flagged as protocol deviations in the write-up. These are honest limitations of a pilot study.
 
-The experimental infrastructure was built as a self-iterating agentic system: specialized agents autonomously designed experiment configurations, executed runs on Kaggle (P100, float32), collected results, and refined hypotheses through closed-loop analysis — without manual intervention between iterations. This is both a methodological choice and a proof-of-concept for agentic scientific research pipelines.
+## The Agentic System
 
-## Finding
+The experimental pipeline was implemented as an agentic system running on Kaggle (P100, float32): LLM-driven agents handled experiment configuration, execution scheduling, and output parsing across the 250 runs without manual intervention between iterations, and generated interpretive summaries of intermediate results to inform sequencing decisions. This is infrastructure context, not a scientific contribution — the methodological questions here are about diffusion guidance, not the pipeline that ran the experiments.
 
-The mid-chain window is the dominant contributor to minority guidance effectiveness. Early guidance achieves perfect seed-wise consistency across the full run. Late guidance underperforms — and occasionally worsens minority affinity relative to no guidance, consistent with fine-detail features distorting global structure before it is established. The full results are reserved pending submission outcome.
+## Findings and Scope
+
+Within this experimental scope, the mid-chain window is the strongest single contributor to minority guidance effectiveness. Early guidance shows relatively stable behaviour across seeds. Late guidance underperforms both other windows and in some cases reduces minority affinity below the no-guidance baseline — a pattern the paper notes but does not causally explain.
+
+These findings are preliminary in a precise sense: single class, single dataset, fixed guidance scale, one sample per seed. They suggest a testable hypothesis about timestep localisation in minority guidance, not a settled result. No single windowed condition approximates full-chain performance, and the paper's conclusion reflects this directly. Full quantitative results are withheld pending submission outcome.
 
 *Extended abstract submitted to EEML 2025. Vittoria Lanzo — Independent Researcher.*`,
       stack: ['Python', 'SQL', 'Kaggle', 'Agentic AI', 'Diffusion Models'],
