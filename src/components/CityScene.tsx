@@ -1204,7 +1204,11 @@ function FloatingDust() {
 function CameraController({ scrollProgress }: { scrollProgress: number }) {
   const { camera } = useThree();
   useFrame(() => {
-    const t = scrollProgress;
+    // Read scroll directly from the DOM every frame — avoids the one-render-cycle
+    // latency introduced by React state batching, which caused Html elements to lag.
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const t = docHeight > 0 ? Math.min(window.scrollY / docHeight, 1) : scrollProgress;
+
     let z: number, y: number;
 
     if (t <= 0.80) {

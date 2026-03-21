@@ -468,10 +468,10 @@ function BillboardFormOverlay({ visible }: { visible: boolean }) {
       pointerEvents: visible ? 'auto' : 'none',
       transition: 'opacity 500ms ease, transform 500ms ease',
       width: '460px', maxWidth: '92vw', maxHeight: '85vh', overflowY: 'auto',
-      background: 'rgba(8,8,20,0.97)',
-      border: '1px solid #6E6EFF', borderRadius: '12px', padding: '32px',
-      boxShadow: '0 0 60px rgba(110,110,255,0.15)',
-      backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+      background: 'rgba(4,4,12,0.96)',
+      border: '1px solid rgba(0,212,255,0.18)', borderRadius: '12px', padding: '32px',
+      boxShadow: '0 16px 64px rgba(0,0,0,0.7), inset 0 1px 0 rgba(0,212,255,0.07)',
+      backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)',
     }}>
       <button
         onClick={() => window.scrollTo({ top: window.scrollY - window.innerHeight * 0.15, behavior: 'smooth' })}
@@ -483,15 +483,12 @@ function BillboardFormOverlay({ visible }: { visible: boolean }) {
           fontFamily: "'Inter', sans-serif", fontSize: '14px',
           display: 'flex', alignItems: 'center', justifyContent: 'center', lineHeight: 1,
         }}
-        onMouseEnter={e => { (e.target as HTMLElement).style.borderColor = '#6E6EFF'; }}
+        onMouseEnter={e => { (e.target as HTMLElement).style.borderColor = '#00D4FF'; }}
         onMouseLeave={e => { (e.target as HTMLElement).style.borderColor = '#1E1E2E'; }}
       >×</button>
 
-      <div style={{ position: 'relative', width: '72px', height: '72px', margin: '0 auto 12px' }}>
-        <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', border: '1px solid #00D4FF55' }} />
-        <div style={{ position: 'absolute', inset: '3px', borderRadius: '50%', border: '2px solid #6E6EFF', boxShadow: '0 0 12px #6E6EFF88, inset 0 0 8px #6E6EFF22' }}>
-          <img src="/adapted_photo.png" alt="Vittoria Lanzo" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover', objectPosition: 'center top', display: 'block', filter: 'contrast(1.18) brightness(0.82) saturate(0.72)' }} />
-        </div>
+      <div style={{ position: 'relative', width: '72px', height: '72px', margin: '0 auto 12px', borderRadius: '50%', border: '1.5px solid rgba(0,212,255,0.45)', boxShadow: '0 0 14px rgba(0,212,255,0.12)', overflow: 'hidden' }}>
+        <img src="/adapted_photo.png" alt="Vittoria Lanzo" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block', filter: 'contrast(1.18) brightness(0.82) saturate(0.72)' }} />
       </div>
       <div style={{ fontFamily: "'Syne', sans-serif", fontWeight: 700, fontSize: '16px', color: '#F0F0F5', textAlign: 'center', letterSpacing: '0.15em', marginBottom: '4px' }}>VITTORIA LANZO</div>
       <div style={{ fontSize: '11px', color: '#8888AA', textAlign: 'center', letterSpacing: '0.1em', marginBottom: '20px' }}>AI Prompt Engineer · Agentic Systems Designer</div>
@@ -500,12 +497,12 @@ function BillboardFormOverlay({ visible }: { visible: boolean }) {
       <div style={{ fontSize: '13px', color: '#8888AA', marginBottom: '20px' }}>Open to collaborations and AI architecture consulting.</div>
 
       <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Your name" value={form.name} onChange={e => setForm(p => ({ ...p, name: e.target.value }))} style={inputStyle} onFocus={e => { e.target.style.borderColor = '#6E6EFF'; }} onBlur={e => { e.target.style.borderColor = '#1E1E2E'; }} />
-        <input type="email" placeholder="you@example.com" value={form.email} onChange={e => setForm(p => ({ ...p, email: e.target.value }))} style={inputStyle} onFocus={e => { e.target.style.borderColor = '#6E6EFF'; }} onBlur={e => { e.target.style.borderColor = '#1E1E2E'; }} />
-        <textarea placeholder="Describe your vision..." value={form.message} onChange={e => setForm(p => ({ ...p, message: e.target.value }))} style={{ ...inputStyle, height: '90px', resize: 'none' }} onFocus={e => { e.target.style.borderColor = '#6E6EFF'; }} onBlur={e => { e.target.style.borderColor = '#1E1E2E'; }} />
-        <button type="submit" style={{ width: '100%', background: '#6E6EFF', color: 'white', border: 'none', borderRadius: '6px', fontFamily: "'Syne', sans-serif", fontSize: '13px', fontWeight: 500, letterSpacing: '0.05em', padding: '13px', cursor: 'pointer', marginTop: '4px' }}
-          onMouseEnter={e => { (e.target as HTMLElement).style.background = '#8A8AFF'; }}
-          onMouseLeave={e => { (e.target as HTMLElement).style.background = '#6E6EFF'; }}
+        <input type="text" placeholder="Your name" value={form.name} onChange={e => setForm(p => ({ ...p, name: e.target.value }))} style={inputStyle} onFocus={e => { e.target.style.borderColor = '#00D4FF'; }} onBlur={e => { e.target.style.borderColor = '#1E1E2E'; }} />
+        <input type="email" placeholder="you@example.com" value={form.email} onChange={e => setForm(p => ({ ...p, email: e.target.value }))} style={inputStyle} onFocus={e => { e.target.style.borderColor = '#00D4FF'; }} onBlur={e => { e.target.style.borderColor = '#1E1E2E'; }} />
+        <textarea placeholder="Describe your vision..." value={form.message} onChange={e => setForm(p => ({ ...p, message: e.target.value }))} style={{ ...inputStyle, height: '90px', resize: 'none' }} onFocus={e => { e.target.style.borderColor = '#00D4FF'; }} onBlur={e => { e.target.style.borderColor = '#1E1E2E'; }} />
+        <button type="submit" style={{ width: '100%', background: '#00D4FF', color: '#050512', border: 'none', borderRadius: '6px', fontFamily: "'Syne', sans-serif", fontSize: '13px', fontWeight: 600, letterSpacing: '0.05em', padding: '13px', cursor: 'pointer', marginTop: '4px' }}
+          onMouseEnter={e => { (e.target as HTMLElement).style.background = '#33DDFF'; }}
+          onMouseLeave={e => { (e.target as HTMLElement).style.background = '#00D4FF'; }}
         >{sent ? 'Sent ✓' : 'Send Message'}</button>
       </form>
 
@@ -537,7 +534,7 @@ function BillboardFormOverlay({ visible }: { visible: boolean }) {
             fontSize: '11px', color: '#44445A', letterSpacing: '0.1em',
             fontFamily: "'Inter', sans-serif",
           }}
-          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = '#6E6EFF'; }}
+          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = '#00D4FF'; }}
           onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = '#44445A'; }}
         >✉ Email me directly</button>
       </div>
