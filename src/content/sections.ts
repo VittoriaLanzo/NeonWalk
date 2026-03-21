@@ -186,7 +186,7 @@ Within this experimental scope, the mid-chain window is the strongest single con
 
 These findings are preliminary in a precise sense: single class, single dataset, fixed guidance scale, one sample per seed. They suggest a testable hypothesis about timestep localisation in minority guidance, not a settled result. No single windowed condition approximates full-chain performance, and the paper's conclusion reflects this directly. Full quantitative results are withheld pending submission outcome.
 
-*Extended abstract submitted to EEML 2025. Vittoria Lanzo — Independent Researcher.*`,
+*Extended abstract submitted to EEML 2026. Vittoria Lanzo — Independent Researcher.*`,
       stack: ['Python', 'SQL', 'Kaggle', 'Agentic AI', 'Diffusion Models'],
       link: null as string | null,
     },
