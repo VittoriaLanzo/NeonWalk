@@ -516,15 +516,16 @@ function BillboardFormOverlay({ visible }: { visible: boolean }) {
           onMouseEnter={e => { (e.target as HTMLElement).style.color = '#8888AA'; }}
           onMouseLeave={e => { (e.target as HTMLElement).style.color = '#44445A'; }}
         >GitHub</a>
-        <a href="https://instagram.com/VittoriaLanzo" target="_blank" rel="noopener noreferrer"
+        <a href="https://www.instagram.com/vittoria.lanzo?igsh=c3MwN2pzdnQxem9p" target="_blank" rel="noopener noreferrer"
           style={{ fontSize: '11px', color: '#44445A', letterSpacing: '0.15em', textDecoration: 'none' }}
           onMouseEnter={e => { (e.target as HTMLElement).style.color = '#8888AA'; }}
           onMouseLeave={e => { (e.target as HTMLElement).style.color = '#44445A'; }}
         >Instagram</a>
-        <span
-          title="LinkedIn — coming soon"
-          style={{ fontSize: '11px', color: '#2A2A3A', letterSpacing: '0.15em', cursor: 'default' }}
-        >LinkedIn</span>
+        <a href="https://www.linkedin.com/in/vittoria-lanzo-626a8426b?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer"
+          style={{ fontSize: '11px', color: '#44445A', letterSpacing: '0.15em', textDecoration: 'none' }}
+          onMouseEnter={e => { (e.target as HTMLElement).style.color = '#8888AA'; }}
+          onMouseLeave={e => { (e.target as HTMLElement).style.color = '#44445A'; }}
+        >LinkedIn</a>
       </div>
       <div style={{ textAlign: 'center', marginTop: '14px' }}>
         <button
