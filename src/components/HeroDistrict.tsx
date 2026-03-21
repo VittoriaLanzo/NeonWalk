@@ -1,9 +1,9 @@
 import { useEffect, useState, useCallback } from 'react';
 
 const roles = [
-  'AI Prompt Engineer',
-  'Agentic Systems Designer',
-  'I make AI think precisely.',
+  'Product Designer & Frontend Engineer',
+  'AI Systems Architect',
+  'I ship the part most people split into three jobs.',
 ];
 
 export default function HeroDistrict() {
