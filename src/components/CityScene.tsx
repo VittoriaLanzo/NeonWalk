@@ -1019,7 +1019,6 @@ function EndOfStreetBuilding({ brickMap }: { brickMap: THREE.Texture }) {
           <div style={{ width: '120px', height: '1px', background: 'linear-gradient(90deg, transparent, #6E6EFF, transparent)' }} />
           <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '13px', color: '#8888AA', letterSpacing: '0.15em', textAlign: 'center' }}>AI SYSTEMS ARCHITECT</div>
           <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '11px', color: '#44445A', letterSpacing: '0.1em', textAlign: 'center' }}>PRODUCT DESIGNER · FRONTEND ENGINEER</div>
-          <div style={{ fontFamily: 'Syne, sans-serif', fontSize: '32px', fontWeight: 700, color: '#F0F0F5', letterSpacing: '0.1em', textAlign: 'center', textShadow: '0 0 24px rgba(110,110,255,0.55)', lineHeight: 1.25 }}>I build before<br />I&#39;m asked.</div>
         </div>
       </Html>
       {/* Neon front strip */}
