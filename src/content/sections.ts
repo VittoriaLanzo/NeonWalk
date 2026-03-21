@@ -162,7 +162,7 @@ The provider-agnostic architecture of the Custom Quiz Studio is a principled sys
       id: '02',
       slug: 'windowed-minority-guidance',
       name: 'Extended Abstract: Windowed Minority Guidance',
-      year: '2025',
+      year: '2026',
       desc: 'Preliminary evidence for timestep-localized effects in diffusion denoising.',
       longDesc: `Minority guidance (Um et al., 2024) steers diffusion sampling toward under-represented data regions by injecting a classifier gradient at every denoising timestep. The premise of this work is a simple question: is that effect actually uniform across the denoising trajectory, or is it concentrated in a specific phase?
 
