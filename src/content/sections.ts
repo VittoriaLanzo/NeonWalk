@@ -56,15 +56,15 @@ export interface Experiment {
 // ─── About ────────────────────────────────────────────────────────────────
 
 export const ABOUT = {
-  tagline: 'AI Prompt Engineer · Agentic Systems Designer',
-  headline: 'I make AI\nthink precisely.',
-  bio: 'I design the cognitive layer between human intent and machine execution — building the prompts, pipelines, and agentic frameworks that make intelligent systems behave precisely.',
+  tagline: 'Product Designer · Frontend Engineer · AI Architect',
+  headline: 'I build the whole\nstack that thinks.',
+  bio: 'From brand systems to React components to agentic pipelines — I design and ship the full experience layer, including the AI that powers it.',
 
   stats: [
-    { value: '4+',  label: 'Years in AI' },
-    { value: '20+', label: 'Pipelines Built' },
-    { value: '3',   label: 'Languages' },
-    { value: '∞',   label: 'Prompts Engineered' },
+    { value: '3',   label: 'Products Shipped' },
+    { value: '22m', label: 'Avg Session, Sestara' },
+    { value: '4+',  label: 'Years Across Disciplines' },
+    { value: '1',   label: 'Research Publication' },
   ] as Stat[],
 
   // ── Add entries like: { year: '2024', role: 'AI Architect', org: 'Company', desc: 'What you did.' }
