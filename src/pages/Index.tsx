@@ -473,6 +473,12 @@ function BillboardFormOverlay({ visible }: { visible: boolean }) {
       border: '1px solid rgba(0,212,255,0.15)', borderRadius: '14px', padding: '28px 32px',
       boxShadow: '0 24px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.02), inset 0 1px 0 rgba(0,212,255,0.07)',
       backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)',
+      transition: 'opacity 500ms ease, transform 500ms ease',
+      width: '460px', maxWidth: '92vw', maxHeight: '85vh', overflowY: 'auto',
+      background: 'rgba(4,4,12,0.96)',
+      border: '1px solid rgba(0,212,255,0.18)', borderRadius: '12px', padding: '32px',
+      boxShadow: '0 16px 64px rgba(0,0,0,0.7), inset 0 1px 0 rgba(0,212,255,0.07)',
+      backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)',
     }}>
       <button
         onClick={() => window.scrollTo({ top: window.scrollY - window.innerHeight * 0.15, behavior: 'smooth' })}
@@ -498,6 +504,12 @@ function BillboardFormOverlay({ visible }: { visible: boolean }) {
           onLoad={() => setImgLoaded(true)}
           onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
         />
+      <div style={{ position: 'relative', width: '72px', height: '72px', margin: '0 auto 12px', borderRadius: '50%', border: '1.5px solid rgba(0,212,255,0.45)', boxShadow: '0 0 14px rgba(0,212,255,0.12)', overflow: 'hidden', background: '#0A0A18', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <img src="/adapted_photo.png" alt="Vittoria Lanzo"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block', filter: 'contrast(1.18) brightness(0.82) saturate(0.72)' }}
+          onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+        />
+        <span aria-hidden="true" style={{ fontFamily: "'Syne', sans-serif", fontSize: '18px', fontWeight: 700, color: 'rgba(0,212,255,0.5)', letterSpacing: '0.05em', zIndex: 0 }}>VL</span>
       </div>
       <div style={{ fontFamily: "'Syne', sans-serif", fontWeight: 700, fontSize: '16px', color: '#F0F0F5', textAlign: 'center', letterSpacing: '0.15em', marginBottom: '4px' }}>VITTORIA LANZO</div>
       <div style={{ fontSize: '11px', color: '#8888AA', textAlign: 'center', letterSpacing: '0.1em', marginBottom: '20px' }}>AI Systems Architect · Product Designer · Frontend Engineer</div>

@@ -1204,6 +1204,9 @@ function FloatingDust() {
 /* ─── Camera Controller ─── */
 function CameraController({ scrollProgress }: { scrollProgress: number }) {
   const { camera } = useThree();
+  // Cache scrollable height — only changes on window resize, not on every frame.
+  // scrollHeight is a layout-flush property; reading it at 60fps wastes CPU.
+  // window.scrollY is a simple cached read and is safe to call every frame.
   const docHeightRef = useRef(
     typeof window !== 'undefined'
       ? document.documentElement.scrollHeight - window.innerHeight
@@ -1227,6 +1230,7 @@ function CameraController({ scrollProgress }: { scrollProgress: number }) {
 
     let targetZ: number, targetY: number;
     const targetLookAt = new THREE.Vector3();
+    let z: number, y: number;
 
     if (t <= 0.80) {
       targetZ = THREE.MathUtils.lerp(30, -155, t / 0.80);
