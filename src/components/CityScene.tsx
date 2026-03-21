@@ -1017,7 +1017,8 @@ function EndOfStreetBuilding({ brickMap }: { brickMap: THREE.Texture }) {
           </div>
           <div style={{ fontFamily: 'Syne, sans-serif', fontSize: '20px', fontWeight: 700, color: '#F0F0F5', letterSpacing: '0.2em', textAlign: 'center' }}>VITTORIA LANZO</div>
           <div style={{ width: '120px', height: '1px', background: 'linear-gradient(90deg, transparent, #6E6EFF, transparent)' }} />
-          <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '13px', color: '#8888AA', letterSpacing: '0.15em', textAlign: 'center' }}>AI SYSTEMS ARCHITECT · PRODUCT DESIGNER</div>
+          <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '13px', color: '#8888AA', letterSpacing: '0.15em', textAlign: 'center' }}>AI SYSTEMS ARCHITECT</div>
+          <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '11px', color: '#44445A', letterSpacing: '0.1em', textAlign: 'center' }}>PRODUCT DESIGNER · FRONTEND ENGINEER</div>
           <div style={{ fontFamily: 'Syne, sans-serif', fontSize: '32px', fontWeight: 700, color: '#F0F0F5', letterSpacing: '0.1em', textAlign: 'center', textShadow: '0 0 24px rgba(110,110,255,0.55)', lineHeight: 1.25 }}>I build before<br />I&#39;m asked.</div>
         </div>
       </Html>
@@ -1203,11 +1204,26 @@ function FloatingDust() {
 /* ─── Camera Controller ─── */
 function CameraController({ scrollProgress }: { scrollProgress: number }) {
   const { camera } = useThree();
+  // Cache scrollable height — only changes on window resize, not on every frame.
+  // scrollHeight is a layout-flush property; reading it at 60fps wastes CPU.
+  // window.scrollY is a simple cached read and is safe to call every frame.
+  const docHeightRef = useRef(
+    typeof window !== 'undefined'
+      ? document.documentElement.scrollHeight - window.innerHeight
+      : 0
+  );
+  useEffect(() => {
+    const update = () => {
+      docHeightRef.current = document.documentElement.scrollHeight - window.innerHeight;
+    };
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
   useFrame(() => {
-    // Read scroll directly from the DOM every frame — avoids the one-render-cycle
-    // latency introduced by React state batching, which caused Html elements to lag.
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const t = docHeight > 0 ? Math.min(window.scrollY / docHeight, 1) : scrollProgress;
+    const t = docHeightRef.current > 0
+      ? Math.min(window.scrollY / docHeightRef.current, 1)
+      : scrollProgress;
 
     let z: number, y: number;
 

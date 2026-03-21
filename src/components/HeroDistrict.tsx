@@ -14,30 +14,36 @@ export default function HeroDistrict() {
   useEffect(() => {
     const role = roles[roleIdx];
     let i = 0;
-    let typing = true;
+    let typeId: ReturnType<typeof setInterval> | null = null;
+    let pauseId: ReturnType<typeof setTimeout> | null = null;
+    let eraseId: ReturnType<typeof setInterval> | null = null;
 
-    const interval = setInterval(() => {
-      if (typing) {
-        setDisplayText(role.slice(0, i + 1));
-        i++;
-        if (i >= role.length) {
-          typing = false;
-          setTimeout(() => {
-            const eraseInterval = setInterval(() => {
-              i--;
-              setDisplayText(role.slice(0, i));
-              if (i <= 0) {
-                clearInterval(eraseInterval);
-                setRoleIdx(prev => (prev + 1) % roles.length);
-              }
-            }, 30);
-          }, 2000);
-          clearInterval(interval);
-        }
+    typeId = setInterval(() => {
+      setDisplayText(role.slice(0, i + 1));
+      i++;
+      if (i >= role.length) {
+        clearInterval(typeId!);
+        typeId = null;
+        pauseId = setTimeout(() => {
+          pauseId = null;
+          eraseId = setInterval(() => {
+            i--;
+            setDisplayText(role.slice(0, i));
+            if (i <= 0) {
+              clearInterval(eraseId!);
+              eraseId = null;
+              setRoleIdx(prev => (prev + 1) % roles.length);
+            }
+          }, 30);
+        }, 2000);
       }
     }, 80);
 
-    return () => clearInterval(interval);
+    return () => {
+      if (typeId !== null) clearInterval(typeId);
+      if (pauseId !== null) clearTimeout(pauseId);
+      if (eraseId !== null) clearInterval(eraseId);
+    };
   }, [roleIdx]);
 
   useEffect(() => {
