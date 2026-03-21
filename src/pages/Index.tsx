@@ -491,7 +491,7 @@ function BillboardFormOverlay({ visible }: { visible: boolean }) {
         <img src="/adapted_photo.png" alt="Vittoria Lanzo" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block', filter: 'contrast(1.18) brightness(0.82) saturate(0.72)' }} />
       </div>
       <div style={{ fontFamily: "'Syne', sans-serif", fontWeight: 700, fontSize: '16px', color: '#F0F0F5', textAlign: 'center', letterSpacing: '0.15em', marginBottom: '4px' }}>VITTORIA LANZO</div>
-      <div style={{ fontSize: '11px', color: '#8888AA', textAlign: 'center', letterSpacing: '0.1em', marginBottom: '20px' }}>AI Prompt Engineer · Agentic Systems Designer</div>
+      <div style={{ fontSize: '11px', color: '#8888AA', textAlign: 'center', letterSpacing: '0.1em', marginBottom: '20px' }}>AI Systems Architect · Product Designer · Frontend Engineer</div>
       <div style={{ height: '1px', background: '#1E1E2E', marginBottom: '20px' }} />
       <div style={{ fontFamily: "'Syne', sans-serif", fontWeight: 700, fontSize: '22px', color: '#F0F0F5', marginBottom: '6px' }}>Start a conversation.</div>
       <div style={{ fontSize: '13px', color: '#8888AA', marginBottom: '20px' }}>Open to collaborations and AI architecture consulting.</div>
