@@ -86,7 +86,7 @@ export const ABOUT = {
       year: '2026',
       role: 'Product Designer · Frontend Engineer · AI Engineer',
       org: 'Sestara',
-      desc: 'Silver Medal — 2nd place overall out of 925 participants at the MEGA Hackathon. Sole product, design, and AI lead on a free edtech platform. Designed the system, wrote all React components, engineered all prompts. 22m11s average session in 90 days.',
+      desc: 'Silver Medal — 2nd place overall out of 925 participants at the MEGA Hackathon 2026. Sole product, design, and AI lead on a free edtech platform. Designed the system, wrote all React components, engineered all prompts. 22m11s average session in 90 days.',
     },
     {
       year: '2026',
@@ -135,11 +135,11 @@ export const WORK = {
       slug: 'sestara',
       name: 'Sestara',
       year: '2025',
-      award: 'Silver Medal · 2nd Place Overall · MEGA Hackathon · 925 Participants',
+      award: 'Silver Medal · 2nd Place Overall · MEGA Hackathon 2026 · 925 Participants',
       desc: "An AI-powered edtech platform that generates your personal study roadmap, tracks every topic, and quizzes you until you actually know it — with a 22-minute average session to prove it works.",
       longDesc: `Silver Medal. 2nd place overall. 925 participants. MEGA Hackathon.
 
-That is the context for everything that follows. Sestara did not place second in a small room — it competed against 925 participants at the MEGA Hackathon, a global event integrating computer science, AI, and STEM aimed at advancing human development, and it took the Silver Medal. The product that earned that result is described below.
+That is the context for everything that follows. Sestara did not place second in a small room — it competed against 925 participants at the MEGA Hackathon 2026, a global event integrating computer science, AI, and STEM aimed at advancing human development, and it took the Silver Medal. The product that earned that result is described below.
 
 Twenty-two minutes and eleven seconds. That is the average session duration on Sestara in its first 90 days — on a free edtech tool built at a hackathon. For context: most consumer web products consider two minutes a success. Students are not bouncing. They are staying and working. That number is the result of every product, design, and AI decision described below.
 
