@@ -84,7 +84,7 @@ export const ABOUT = {
       year: '2026',
       role: 'Product Designer · Frontend Engineer · AI Engineer',
       org: 'Sestara',
-      desc: 'Sole product, design, and AI lead on a free edtech platform built at a hackathon. Designed the system, wrote all React components, engineered all prompts. 22m11s average session in 90 days.',
+      desc: '2nd place out of 925 participants at the MEGA Hackathon. Sole product, design, and AI lead on a free edtech platform. Designed the system, wrote all React components, engineered all prompts. 22m11s average session in 90 days.',
     },
     {
       year: '2026',
@@ -133,8 +133,12 @@ export const WORK = {
       slug: 'sestara',
       name: 'Sestara',
       year: '2025',
-      desc: "Most learners quit because they don't know what to study next. Sestara fixes that — AI generates your personal roadmap, tracks every topic, and quizzes you until you actually know it.",
-      longDesc: `Twenty-two minutes and eleven seconds. That is the average session duration on Sestara in its first 90 days — on a free edtech tool built at a hackathon. For context: most consumer web products consider two minutes a success. Students are not bouncing. They are staying and working. That number is the result of every product, design, and AI decision described below.
+      desc: "2nd place out of 925 participants at the MEGA Hackathon. Sestara is an AI-powered edtech platform that generates your personal study roadmap, tracks every topic, and quizzes you until you actually know it — with a 22-minute average session to prove it works.",
+      longDesc: `2nd place. 925 participants. MEGA Hackathon.
+
+That is the context for everything that follows. Sestara did not place second in a small room — it competed against 925 participants at the MEGA Hackathon, a global event integrating computer science, AI, and STEM aimed at advancing human development, and it came in second. The product that earned that result is described below.
+
+Twenty-two minutes and eleven seconds. That is the average session duration on Sestara in its first 90 days — on a free edtech tool built at a hackathon. For context: most consumer web products consider two minutes a success. Students are not bouncing. They are staying and working. That number is the result of every product, design, and AI decision described below.
 
 Sestara is named after the sextant — the instrument sailors used to navigate open ocean with nothing but stars and math. The premise behind the product: learning should feel the same way. Oriented, purposeful, and never lost.
 
