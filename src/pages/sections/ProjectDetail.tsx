@@ -132,6 +132,37 @@ export default function ProjectDetail() {
           {project.desc}
         </p>
 
+        {/* Certification image */}
+        {project.certImage && (
+          <div style={{ marginBottom: '48px' }}>
+            <div style={{
+              fontSize: '10px',
+              fontFamily: "'Syne', sans-serif",
+              letterSpacing: '0.25em',
+              color: '#44445A',
+              marginBottom: '16px',
+            }}>
+              AWARD CERTIFICATE
+            </div>
+            <div style={{
+              border: `1px solid ${COLOR}33`,
+              borderRadius: '8px',
+              overflow: 'hidden',
+              background: '#0A0A1A',
+            }}>
+              <img
+                src={project.certImage}
+                alt={`${project.name} award certificate`}
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  height: 'auto',
+                }}
+              />
+            </div>
+          </div>
+        )}
+
         {/* Long description */}
         {project.longDesc && (
           <div style={{ marginBottom: '48px' }}>

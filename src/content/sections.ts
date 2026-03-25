@@ -38,6 +38,8 @@ export interface Project {
   year: string;
   /** Optional award badge displayed prominently above the project name */
   award?: string;
+  /** Path to a certification/award image shown on the detail page, relative to /public */
+  certImage?: string;
   desc: string;
   /** Extended description shown on the project detail page */
   longDesc?: string;
@@ -136,6 +138,7 @@ export const WORK = {
       name: 'Sestara',
       year: '2025',
       award: 'Silver Medal · 2nd Place Overall · MEGA Hackathon 2026 · 925 Participants',
+      certImage: '/certs/sestara-cert.png', // drop the image in public/certs/ to activate
       desc: "An AI-powered edtech platform that generates your personal study roadmap, tracks every topic, and quizzes you until you actually know it — with a 22-minute average session to prove it works.",
       longDesc: `Silver Medal. 2nd place overall. 925 participants. MEGA Hackathon.
 
