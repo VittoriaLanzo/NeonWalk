@@ -1,0 +1,65 @@
+<div align="center">
+
+**Vittoria Lanzo** &nbsp;·&nbsp; Cesena, Italy
+
+Builder · Prompt Engineer · Agentic Systems Designer
+
+</div>
+
+---
+
+## 🏆 Merged OSS
+
+**[PrefectHQ/prefect · #21707](https://github.com/PrefectHQ/prefect/pull/21707)** — `count_flow_runs` re-evaluated one correlated EXISTS subquery per filter per candidate row: O(k · N · log M) work.
+> Replaced with explicit JOINs (N:1 foreign keys only, task runs excluded) → O(N + ΣMᵢ) · SQLite: 51–66× at 100k rows · PostgreSQL: up to 18× · 21 regression tests
+
+**[PrefectHQ/prefect · #21004](https://github.com/PrefectHQ/prefect/pull/21004)** — `prefect worker start` had no way to skip pool creation; operators hitting pre-existing pools got silent creation side-effects.
+> Fix introduced `--no-create-pool-if-not-found` flag, eliminating the side-effect entirely · orchestrated end-to-end via multi-agent workflow
+
+---
+
+## 🔧 In Review
+
+**[sktime/sktime-mcp · #126](https://github.com/sktime/sktime-mcp/pull/126) + [#124](https://github.com/sktime/sktime-mcp/pull/124)** — 5 bugs in `RegistryInterface` (2 race conditions, 3 correctness errors) → under review
+> Double-checked locking, 100% branch coverage, 7.8× throughput improvement (239ms → 31ms, cold-cache registry lookup)
+
+---
+
+## 🥈 Hackathon
+
+**MEGA Hackathon 2026 — Silver Medal (900+ participants)**
+
+Built [**Sestara**](https://sestara.lovable.app) in-contest: AI study roadmap platform (personalized paths, flashcards, quizzes, study assistant) addressing SDGs 4 · 10 · 11 · 16. Stack: React · TypeScript · Vite · Supabase · Google Gemini · shadcn/ui · Framer Motion · Wolfram Alpha LLM.
+
+---
+
+## 🛠 Tech Stack
+
+**Languages**
+
+[![Languages](https://skillicons.dev/icons?i=python,c,mysql,latex,bash)](https://skillicons.dev)
+
+**Multi-agent Systems**
+
+![Claude Code](https://img.shields.io/badge/Claude_Code-CC785C?style=flat-square&logo=anthropic&logoColor=white)
+<img src="https://raw.githubusercontent.com/VittoriaLanzo/VittoriaLanzo/main/assets/antigravity-logo.png" height="20" alt="Antigravity"/>
+
+**Dev Environment**
+
+[![Dev](https://skillicons.dev/icons?i=vscode,debian,docker,raspberrypi,git)](https://skillicons.dev)
+
+**Creative**
+
+[![Creative](https://skillicons.dev/icons?i=figma,canva)](https://skillicons.dev)
+
+**Infrastructure**
+
+[![Infra](https://skillicons.dev/icons?i=githubactions,supabase)](https://skillicons.dev)
+
+---
+
+<div align="center">
+
+17 · [vittoria3103.123@gmail.com](mailto:vittoria3103.123@gmail.com) · [vittorialanzo.vercel.app](https://vittorialanzo.vercel.app)
+
+</div>
