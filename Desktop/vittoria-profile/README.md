@@ -2,7 +2,7 @@
 
 **Vittoria Lanzo** &nbsp;·&nbsp; Cesena, Italy
 
-Builder · Prompt Engineer · Agentic Systems Designer
+Agentic Systems Designer · OSS Contributor · ML Researcher
 
 </div>
 
@@ -22,6 +22,13 @@ Builder · Prompt Engineer · Agentic Systems Designer
 
 **[sktime/sktime-mcp · #126](https://github.com/sktime/sktime-mcp/pull/126) + [#124](https://github.com/sktime/sktime-mcp/pull/124)** — 5 bugs in `RegistryInterface` (2 race conditions, 3 correctness errors) → under review
 > Double-checked locking, 100% branch coverage, 7.8× throughput improvement (239ms → 31ms, cold-cache registry lookup)
+
+---
+
+## 🔬 Research
+
+**[windowed-minority-guidance](https://github.com/VittoriaLanzo/windowed-minority-guidance)** — Submitted to EEML 2026 (independent)
+> Tested whether minority guidance (Um, Song & Lim, ICLR 2024) produces timestep-localized effects in diffusion denoising. Split the chain into 3 equal windows; mid-phase guidance recovered 45.6% of full-chain loss reduction across 250 iterations / 50 seeds on LSUN Bedroom. Wilcoxon signed-rank p < 0.001 for mid, early, and full guidance vs. baseline.
 
 ---
 
