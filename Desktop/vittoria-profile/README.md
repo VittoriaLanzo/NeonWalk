@@ -1,8 +1,12 @@
 <div align="center">
 
+<a href="https://vittorialanzo.vercel.app" title="Open portfolio">
+  <img src="https://raw.githubusercontent.com/VittoriaLanzo/VittoriaLanzo/main/assets/portfolio-preview.svg" alt="Vittoria Lanzo — Portfolio" width="800"/>
+</a>
+
 **Vittoria Lanzo**
 
-Agentic Systems Designer · OSS Contributor · ML Researcher
+ML Researcher · Agentic Architect · OSS Contributor
 
 </div>
 
