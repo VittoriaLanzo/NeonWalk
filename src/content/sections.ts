@@ -101,7 +101,7 @@ These findings are preliminary: single class, single dataset, fixed guidance sca
 
 export const PERFORMANCE = {
   headline: 'The work\nthat shipped.',
-  tagline: 'Open-source performance engineering · 3 merged · 4 in review',
+  tagline: 'Open-source performance engineering · 3 merged · 5 in review',
 
   contributions: [
     {
@@ -145,6 +145,19 @@ export const PERFORMANCE = {
     },
     {
       id: '04',
+      repo: 'NVIDIA/cutlass',
+      pr: '#3242',
+      href: 'https://github.com/NVIDIA/cutlass/pull/3242',
+      status: 'in-review' as ContribStatus,
+      year: '2026',
+      title: 'BF16 PTX fast-math specializations for fast_exp and fast_tanh',
+      desc: 'fast_exp and fast_tanh had no bfloat16_t PTX path, so bf16 activations were routed through float conversions at ~3 instructions per element.',
+      fix: 'Five PTX specializations (scalar + array fast_exp on SM80+, fast_tanh on SM90+) emit tanh.approx.bf16x2 directly — ~0.5 instructions per element, no float round-trip.',
+      metrics: ['Up to 6× fewer instructions/element', 'PTX output verified, no float casts', '11 tests · 9 host / 2 device'],
+      hasPipeline: true,
+    },
+    {
+      id: '05',
       repo: 'sktime/sktime-mcp',
       pr: '#126 + #124',
       href: 'https://github.com/sktime/sktime-mcp/pull/126',
@@ -157,7 +170,7 @@ export const PERFORMANCE = {
       hasPipeline: true,
     },
     {
-      id: '05',
+      id: '06',
       repo: 'SWE-agent/mini-swe-agent',
       pr: '#821',
       href: 'https://github.com/SWE-agent/mini-swe-agent/pull/821',
@@ -170,7 +183,7 @@ export const PERFORMANCE = {
       hasPipeline: true,
     },
     {
-      id: '06',
+      id: '07',
       repo: 'fastapi/fastapi',
       pr: '#15476',
       href: 'https://github.com/fastapi/fastapi/pull/15476',
@@ -183,7 +196,7 @@ export const PERFORMANCE = {
       hasPipeline: false,
     },
     {
-      id: '07',
+      id: '08',
       repo: 'Lightricks/LTX-2',
       pr: '#215',
       href: 'https://github.com/Lightricks/LTX-2/pull/215',
@@ -212,9 +225,9 @@ export const EXPERIENCE = {
     },
     {
       year: '2026',
-      role: 'OSS Performance Engineer',
-      org: 'PrefectHQ · sktime · Lightricks · FastAPI · SWE-agent',
-      desc: '7 performance contributions to production open-source codebases. 3 merged into PrefectHQ/prefect: O(N²)→O(1) checksum index, EXISTS→JOIN fast-path, and a missing operator escape hatch. 4 in review: sktime-mcp race conditions, SWE-agent FormatError persistence, FastAPI lazy allocation, Lightricks LTX-2 VAE tiling.',
+      role: 'Backend Developer',
+      org: 'NVIDIA · PrefectHQ · sktime · Lightricks · FastAPI · SWE-agent',
+      desc: '8 performance contributions to production open-source codebases. 3 merged into PrefectHQ/prefect: O(N²)→O(1) checksum index, EXISTS→JOIN fast-path, and a missing operator escape hatch. 5 in review: NVIDIA CUTLASS bf16 PTX fast-math (up to 6× fewer instructions/element), sktime-mcp race conditions, SWE-agent FormatError persistence, FastAPI lazy allocation, and Lightricks LTX-2 VAE tiling.',
     },
     {
       year: '2026',
@@ -228,18 +241,18 @@ export const EXPERIENCE = {
 // ─── About ────────────────────────────────────────────────────────────────
 
 export const ABOUT = {
-  tagline: 'ML Researcher · Agentic Architect · Performance Engineer',
+  tagline: 'ML Researcher · Agentic Systems Designer · Backend Developer',
   headline: 'Vittoria Lanzo\n17 · Cesena, Italy',
 
-  pitch: 'Accepted to EEML 2026 with an extended abstract on timestep-localisation in diffusion denoising — the Eastern European Machine Learning Summer School, one of the most selective ML summer schools in Europe. Probably one of the youngest attendees.',
+  pitch: 'Accepted to EEML 2026 — the Eastern European Machine Learning Summer School — with an extended abstract on timestep-localisation in diffusion denoising: minority guidance concentrates in a mid-chain window that recovers 45.6% of the full-chain effect, across 250 runs and 50 seeds (Wilcoxon p < 0.001).',
 
-  detail: 'On the engineering side: three PRs merged into PrefectHQ/prefect, four more open across Lightricks LTX-2, FastAPI, sktime-mcp, and SWE-agent. Built using a multi-agent contribution pipeline that handles spec, adversarial review, and regression tests end-to-end. Open to ML research, interesting problems, and things worth shipping.',
+  detail: 'On the systems side: three PRs merged into PrefectHQ/prefect — an O(N²)→O(1) checksum index, a correlated-EXISTS→JOIN fast-path, and 13–125× query speedups — plus five under review across NVIDIA CUTLASS (bf16 PTX fast-math, up to 6× fewer instructions per element), Lightricks LTX-2, FastAPI, sktime-mcp, and SWE-agent. Each lands through a multi-agent contribution pipeline that runs spec, adversarial review, and regression tests end-to-end.',
 
   availability: 'Open to ML research collaborations, agentic architecture projects, and performance engineering work.',
 
   stats: [
     { value: '3',      label: 'Merged PRs' },
-    { value: '4',      label: 'In Review' },
+    { value: '5',      label: 'In Review' },
     { value: 'EEML',   label: '2026 · Accepted' },
     { value: 'Silver', label: 'MEGA Hackathon' },
   ] as Stat[],

@@ -497,10 +497,10 @@ function BillboardFormOverlay({ visible }: { visible: boolean }) {
 
       <div style={{ width: '72px', height: '72px', borderRadius: '50%', border: '2px solid #6E6EFF', background: '#0F0F1A', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Syne', sans-serif", fontSize: '20px', fontWeight: 700, color: '#6E6EFF', margin: '0 auto 12px' }}>VL</div>
       <div style={{ fontFamily: "'Syne', sans-serif", fontWeight: 700, fontSize: '16px', color: '#F0F0F5', textAlign: 'center', letterSpacing: '0.15em', marginBottom: '4px' }}>VITTORIA LANZO</div>
-      <div style={{ fontSize: '11px', color: '#8888AA', textAlign: 'center', letterSpacing: '0.1em', marginBottom: '20px' }}>ML Researcher · Agentic Architect · Performance Engineer</div>
+      <div style={{ fontSize: '11px', color: '#8888AA', textAlign: 'center', letterSpacing: '0.1em', marginBottom: '20px' }}>ML Researcher · Agentic Systems Designer · Backend Developer</div>
       <div style={{ height: '1px', background: '#1E1E2E', marginBottom: '20px' }} />
       <div style={{ fontFamily: "'Syne', sans-serif", fontWeight: 700, fontSize: '22px', color: '#F0F0F5', marginBottom: '6px' }}>Get in touch.</div>
-      <div style={{ fontSize: '13px', color: '#8888AA', marginBottom: '20px' }}>ML Researcher · Agentic Architect · Performance Engineer</div>
+      <div style={{ fontSize: '13px', color: '#8888AA', marginBottom: '20px' }}>ML Researcher · Agentic Systems Designer · Backend Developer</div>
 
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder="Your name" value={form.name} onChange={e => setForm(p => ({ ...p, name: e.target.value }))} style={inputStyle} onFocus={e => { e.target.style.borderColor = '#6E6EFF'; }} onBlur={e => { e.target.style.borderColor = '#1E1E2E'; }} />

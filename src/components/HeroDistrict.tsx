@@ -2,8 +2,8 @@ import { useEffect, useState, useCallback } from 'react';
 
 const roles = [
   'ML Researcher',
-  'Agentic Architect',
-  'Projects',
+  'Agentic Systems Designer',
+  'Backend Developer',
 ];
 
 export default function HeroDistrict() {

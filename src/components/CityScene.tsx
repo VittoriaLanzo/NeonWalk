@@ -1008,7 +1008,7 @@ function EndOfStreetBuilding({ brickMap }: { brickMap: THREE.Texture }) {
           <div style={{ fontFamily: 'Syne, sans-serif', fontSize: '20px', fontWeight: 700, color: '#F0F0F5', letterSpacing: '0.2em', textAlign: 'center' }}>VITTORIA LANZO</div>
           <div style={{ width: '120px', height: '1px', background: 'linear-gradient(90deg, transparent, #6E6EFF, transparent)' }} />
           <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '13px', color: '#8888AA', letterSpacing: '0.15em', textAlign: 'center' }}>ML RESEARCHER</div>
-          <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '11px', color: '#44445A', letterSpacing: '0.1em', textAlign: 'center' }}>AGENTIC ARCHITECT · PERFORMANCE ENGINEER</div>
+          <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '11px', color: '#44445A', letterSpacing: '0.1em', textAlign: 'center' }}>AGENTIC SYSTEMS DESIGNER · BACKEND DEVELOPER</div>
         </div>
       </Html>
       {/* Neon front strip */}
