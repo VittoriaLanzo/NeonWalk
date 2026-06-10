@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vittorialanzo.vercel.app/sitemap.xml
